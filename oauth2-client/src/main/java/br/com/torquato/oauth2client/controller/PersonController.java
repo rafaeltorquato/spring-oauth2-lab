@@ -23,14 +23,13 @@ public class PersonController extends BaseController {
     @GetMapping("/persons")
     public ModelAndView index(@AuthenticationPrincipal OAuth2User oauth2User,
                               @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient) {
-        String token = "Bearer " + authorizedClient.getAccessToken().getTokenValue();
+        String token = extractBearerToken(authorizedClient);
         List<PersonDTO> persons = webClient.get()
                 .uri("http://localhost:8181/persons")
                 .header("Authorization", token)
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<PersonDTO>>() {})
                 .block();
-        System.out.println(persons);
         ModelAndView index = putUserDetails(new ModelAndView("index"), oauth2User);
         index.addObject("persons", persons);
         return index;

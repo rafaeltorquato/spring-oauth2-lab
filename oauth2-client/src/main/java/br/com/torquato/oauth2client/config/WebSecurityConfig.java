@@ -1,5 +1,6 @@
 package br.com.torquato.oauth2client.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -9,8 +10,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    public static final String LOGOUT_SUCCESS_URL = "http://localhost:8888/auth/realms/oauth2-study/protocol/openid" +
-            "-connect/logout?redirect_uri=http%3A%2F%2Flocalhost%3A8080";
+    @Value("${app.oauth2.logout-success-url}")
+    private String logoutSuccessUrl;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -21,7 +22,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .oauth2Login()
                 .and()
                 .logout()
-                .logoutSuccessUrl(LOGOUT_SUCCESS_URL);
+                .logoutSuccessUrl(this.logoutSuccessUrl);
     }
 
 }

@@ -1,4 +1,8 @@
 package br.com.torquato.oauth2resourceserver.delivery.rest;
 
-public class ResourceNotFoundException extends RuntimeException{
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@ResponseStatus(value = HttpStatus.NOT_FOUND)
+public class ResourceNotFoundException extends RuntimeException {
 }

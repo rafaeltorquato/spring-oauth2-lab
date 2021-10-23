@@ -6,26 +6,33 @@
 </head>
 <body>
 <span th:text="'Hello, ' + ${userFullName} + '!'"></span>
-
+<a href="/logout">logout</a>
+<br/>
 <a href="/">index</a>
 <a href="/persons">persons</a>
-<a href="/logout">logout</a>
+<br/>
+<br/>
+<br/>
 
-<table th:if="${not #lists.isEmpty(persons)}">
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Age</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="p : ${persons}">
-        <td th:text="${p.id}"></td>
-        <td th:text="${p.name}"></td>
-        <td th:text="${p.age}"></td>
-    </tr>
-    </tbody>
-</table>
+<div th:if="${not #lists.isEmpty(persons)}">
+    <h3>Persons table</h3>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p : ${persons}">
+            <td th:text="${p.id}"></td>
+            <td th:text="${p.name}"></td>
+            <td th:text="${p.age}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
 </body>
 </html>

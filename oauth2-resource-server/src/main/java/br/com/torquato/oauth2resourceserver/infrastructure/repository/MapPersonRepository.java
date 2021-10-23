@@ -17,12 +17,18 @@ public class MapPersonRepository implements PersonRepository {
     private static final Map<String, Person> map = new ConcurrentHashMap<>();
 
     static {
-        Person person1 = new Person(
+        Person person = new Person(
                 UUID.randomUUID().toString(),
                 "João da Silva",
                 (short) 55
         );
-        map.put(person1.getId(), person1);
+        map.put(person.getId(), person);
+        person = new Person(
+                UUID.randomUUID().toString(),
+                "Márcio Vitor",
+                (short) 40
+        );
+        map.put(person.getId(), person);
     }
 
     @Override
