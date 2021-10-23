@@ -3,7 +3,12 @@ spring:
     oauth2:
       resourceserver:
         jwt:
+          # Spring discover configuration automatically, used by jwt token validation (locally)
           issuer-uri: http://localhost:8888/auth/realms/oauth2-study
+        opaquetoken:
+          client-id: oauth2-resource-server
+          client-secret: c2c4c446-8a41-46ea-8c04-948a50dbd01f
+          introspection-uri: http://localhost:8888/auth/realms/oauth2-study/protocol/openid-connect/token/introspect
 logging:
   level:
     root: debug
