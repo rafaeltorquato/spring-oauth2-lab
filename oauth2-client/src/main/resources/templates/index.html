@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<span th:text="'Hello, ' + ${userFullName} + '!'"></span>
+
+<a href="/">index</a>
+<a href="/persons">persons</a>
+<a href="/logout">logout</a>
+
+<table th:if="${not #lists.isEmpty(persons)}">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Age</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="p : ${persons}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.age}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

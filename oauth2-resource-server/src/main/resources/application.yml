@@ -1,0 +1,11 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8888/auth/realms/oauth2-study
+logging:
+  level:
+    root: debug
+server:
+  port: 8181
