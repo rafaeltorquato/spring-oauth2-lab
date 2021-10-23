@@ -18,14 +18,14 @@ public class PersonRestController {
 
     private final PersonRepository personRepository;
 
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('SCOPE_view_persons')")
     @GetMapping("/{id}")
     public Person get(@PathVariable String id) {
         return personRepository.findById(id)
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
-    @PreAuthorize("hasAuthority('ROLE_USER')")
+    @PreAuthorize("hasAuthority('SCOPE_view_persons')")
     @GetMapping()
     public List<Person> get() {
         return personRepository.listAll();
