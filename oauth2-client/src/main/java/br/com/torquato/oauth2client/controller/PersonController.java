@@ -25,16 +25,19 @@ public class PersonController extends BaseController {
     @GetMapping("/persons")
     public ModelAndView index(@AuthenticationPrincipal OAuth2User oauth2User,
                               @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient) {
-        String token = extractBearerToken(authorizedClient);
-        List<PersonDTO> persons = this.webClient.get()
-                .uri(this.appConfiguration.getPersonsUrl())
-                .header("Authorization", token)
-                .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<PersonDTO>>() {})
-                .block();
+        List<PersonDTO> persons = fetchPersons(authorizedClient);
         ModelAndView index = putUserDetails(new ModelAndView("index"), oauth2User);
         index.addObject("persons", persons);
         return index;
+    }
+
+    private List<PersonDTO> fetchPersons(OAuth2AuthorizedClient authorizedClient) {
+        return this.webClient.get()
+                .uri(this.appConfiguration.getPersonsUrl())
+                .header("Authorization", extractBearerToken(authorizedClient))
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<PersonDTO>>() {})
+                .block();
     }
 
 }

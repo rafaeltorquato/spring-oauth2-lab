@@ -7,12 +7,13 @@ import org.springframework.stereotype.Component;
 
 //Should be refresh scope
 @Component
-@ConfigurationProperties(prefix = "app.services")
+@ConfigurationProperties(prefix = "app.urls")
 @Getter
 @Setter
 public class AppConfiguration {
 
     private String booksUrl;
     private String personsUrl;
+    private String logoutSuccessUrl;
 
 }

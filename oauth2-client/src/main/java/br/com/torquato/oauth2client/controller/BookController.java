@@ -25,16 +25,19 @@ public class BookController extends BaseController {
     @GetMapping("/books")
     public ModelAndView index(@AuthenticationPrincipal OAuth2User oauth2User,
                               @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient) {
-        String token = extractBearerToken(authorizedClient);
-        List<BookDTO> books = this.webClient.get()
-                .uri(this.appConfiguration.getBooksUrl())
-                .header("Authorization", token)
-                .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<BookDTO>>() {})
-                .block();
+        List<BookDTO> books = fetchBooks(authorizedClient);
         ModelAndView index = putUserDetails(new ModelAndView("index"), oauth2User);
         index.addObject("books", books);
         return index;
+    }
+
+    private List<BookDTO> fetchBooks(OAuth2AuthorizedClient authorizedClient) {
+        return this.webClient.get()
+                .uri(this.appConfiguration.getBooksUrl())
+                .header("Authorization", extractBearerToken(authorizedClient))
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<List<BookDTO>>() {})
+                .block();
     }
 
 }
