@@ -10,6 +10,7 @@
 <br/>
 <a href="/">index</a>
 <a href="/persons">persons</a>
+<a href="/books">books</a>
 <br/>
 <br/>
 <br/>
@@ -29,6 +30,25 @@
             <td th:text="${p.id}"></td>
             <td th:text="${p.name}"></td>
             <td th:text="${p.age}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<div th:if="${not #lists.isEmpty(books)}">
+    <h3>Books table</h3>
+    <table border="1">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="b : ${books}">
+            <td th:text="${b.id}"></td>
+            <td th:text="${b.name}"></td>
         </tr>
         </tbody>
     </table>

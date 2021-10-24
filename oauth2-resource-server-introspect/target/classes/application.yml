@@ -1,0 +1,13 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        opaquetoken:
+          client-id: oauth2-resource-server
+          client-secret: 91a3d88a-a9f2-4d92-a01f-c7d9f93eff2c
+          introspection-uri: http://localhost:8888/auth/realms/oauth2-study/protocol/openid-connect/token/introspect
+logging:
+  level:
+    root: debug
+server:
+  port: 8181

@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>br.com.torquato</groupId>
-    <artifactId>oauth2-client</artifactId>
+    <artifactId>oauth2-resource-server-jwt</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>oauth2-client</name>
-    <description>oauth2-client</description>
+    <name>oauth2-resource-server-jwt</name>
+    <description>oauth2-resource-server</description>
     <properties>
         <java.version>11</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -25,7 +25,7 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-oauth2-client</artifactId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -36,12 +36,8 @@
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.thymeleaf</groupId>
-            <artifactId>thymeleaf-spring5</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,11 +48,12 @@
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
+        </dependency>
+        <!--Required for token introspection-->
+        <dependency>
+            <groupId>com.nimbusds</groupId>
+            <artifactId>oauth2-oidc-sdk</artifactId>
         </dependency>
 
         <!--Test dependencies-->

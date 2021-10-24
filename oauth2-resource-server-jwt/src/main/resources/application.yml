@@ -1,0 +1,12 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Spring discover configuration automatically, used by jwt token validation (locally)
+          issuer-uri: http://localhost:8888/auth/realms/oauth2-study
+logging:
+  level:
+    root: debug
+server:
+  port: 8282

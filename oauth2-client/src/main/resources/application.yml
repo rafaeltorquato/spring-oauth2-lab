@@ -3,6 +3,9 @@
 app:
   oauth2:
     logout-success-url: http://localhost:8888/auth/realms/oauth2-study/protocol/openid-connect/logout?redirect_uri=http%3A%2F%2Flocalhost%3A8080
+  services:
+    books-url: http://localhost:8282/books
+    persons-url: http://localhost:8181/persons
 
 spring:
   security:
@@ -12,7 +15,7 @@ spring:
           keycloak:
             client-id: oauth2-client
             # Never commit it, it should be provided by environment
-            client-secret: f8ec76d4-fbb6-4f97-909f-3c4d463e6ccb
+            client-secret: d54ca502-a6cb-4221-9e2e-9f1029c6467f
             authorization-grant-type: authorization_code
             # This URI is a Default URI redirect, create by Spring:
             # {baseUrl}/login/oauth2/code/{registrationId}
@@ -25,9 +28,7 @@ spring:
             user-info-uri: http://localhost:8888/auth/realms/oauth2-study/protocol/openid-connect/userinfo
             jwk-set-uri: http://localhost:8888/auth/realms/oauth2-study/protocol/openid-connect/certs
             issuer-uri: http://localhost:8888/auth/realms/oauth2-study
-            end-session-endpoint: http://localhost:8888/auth/realms/oauth2-study/protocol/openid-connect/logout?redirect_uri=http%3A%2F%2Flocalhost%3A8080
-  main:
-    allow-bean-definition-overriding: true
+
 logging:
   level:
     root: debug

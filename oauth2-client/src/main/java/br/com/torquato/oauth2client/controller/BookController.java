@@ -1,7 +1,7 @@
 package br.com.torquato.oauth2client.controller;
 
 import br.com.torquato.oauth2client.config.AppConfiguration;
-import br.com.torquato.oauth2client.controller.dto.PersonDTO;
+import br.com.torquato.oauth2client.controller.dto.BookDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -17,23 +17,23 @@ import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
-public class PersonController extends BaseController {
+public class BookController extends BaseController {
 
     private final WebClient webClient;
     private final AppConfiguration appConfiguration;
 
-    @GetMapping("/persons")
+    @GetMapping("/books")
     public ModelAndView index(@AuthenticationPrincipal OAuth2User oauth2User,
                               @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient authorizedClient) {
         String token = extractBearerToken(authorizedClient);
-        List<PersonDTO> persons = this.webClient.get()
-                .uri(this.appConfiguration.getPersonsUrl())
+        List<BookDTO> books = this.webClient.get()
+                .uri(this.appConfiguration.getBooksUrl())
                 .header("Authorization", token)
                 .retrieve()
-                .bodyToMono(new ParameterizedTypeReference<List<PersonDTO>>() {})
+                .bodyToMono(new ParameterizedTypeReference<List<BookDTO>>() {})
                 .block();
         ModelAndView index = putUserDetails(new ModelAndView("index"), oauth2User);
-        index.addObject("persons", persons);
+        index.addObject("books", books);
         return index;
     }
 
