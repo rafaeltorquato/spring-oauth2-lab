@@ -1,6 +1,7 @@
 import "./App.css";
 import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Persons from "./Persons";
 
 class App extends React.Component {
   constructor(props) {
@@ -85,21 +86,6 @@ function Login() {
 
 function Books(props) {
   return <h2>Books</h2>;
-}
-
-function Persons(props) {
-  const { access_token } = props;
-  const headers = new Headers();
-  headers.append("Authorization", "Bearer " + access_token);
-  fetch("http://localhost:8181/persons", {
-    method: "GET",
-    accept: "*/*",
-    headers: headers,
-  })
-    .then((d) => d.json())
-    .then((d) => console.log(d))
-    .catch((e) => console.error(e));
-  return <h2>Persons</h2>;
 }
 
 export default App;
